@@ -130,11 +130,20 @@ def store_http_request_info(*, event: dict) -> None:
     else:
         device_type = 'Unknown'
 
+    country_type = 'S'
+    country = event['headers'].get('CloudFront-Viewer-Country')
+
+    if type(country) is not str:
+        country_type = 'NULL'
+        country = True
+
     try:
         body = json.loads(event['body'])
-        article_id = body.get('article_id')
+        article_id_type = 'S'
+        article_id = body.get('article_id', '')
     except Exception:
-        article_id = None
+        article_id_type = 'BOOL'
+        article_id = True
 
     client = boto3.client('dynamodb')
 
@@ -166,16 +175,16 @@ def store_http_request_info(*, event: dict) -> None:
                 'S': event['headers'].get('origin', ''),
             },
             'country-code': {
-                'S': event['headers'].get('CloudFront-Viewer-Country'),
+                country_type: country,
             },
             'device-type': {
                 'S': device_type,
             },
             'action': {
-                'S': event['queryStringParameters'].get('action'),
+                'S': event['queryStringParameters'].get('action', ''),
             },
             'article-id': {
-                'S': article_id,
+                article_id_type: article_id,
             },
             # The article will be auto-deleted by Dynamo after certain time
             TIME_TO_LIVE_ATTR_NAME: {
