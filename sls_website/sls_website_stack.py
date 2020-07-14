@@ -1,6 +1,4 @@
 #! /usr/bin/python3.8 Python3.8
-import json
-
 from aws_cdk import (
     core,
     aws_apigateway,
@@ -247,7 +245,7 @@ class SlsBlogApiStack(core.Stack):
                 'DYNAMODB_TABLE_NAME': self.ddb_table_blog.table_name,
                 'DYNAMODB_LATEST_ARTICLES_INDEX': self.ddb_gsi_latest,
                 'DYNAMODB_TTL_ATTR_NAME': self.ddb_attr_time_to_live,
-                'DYNAMODB_TTL_DURATION': str(60*60*24),  # 24 hours
+                'DYNAMODB_TTL_DURATION': str(60*60*24*30),  # 30 days
                 'STATIC_WEBSITE_DOMAIN': self.static_stack.cdn.domain_name,
             },
         )
