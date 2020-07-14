@@ -9,20 +9,37 @@ setuptools.setup(
     name="sls_website",
     version="0.0.1",
 
-    description="An empty CDK Python app",
+    description="Full-stack Serverless Website Demonstration",
     long_description=long_description,
     long_description_content_type="text/markdown",
 
-    author="author",
+    author="Renato Byrro",
+    author_email="renato@byrro.dev",
 
     package_dir={"": "sls_website"},
     packages=setuptools.find_packages(where="sls_website"),
 
     install_requires=[
-        "aws-cdk.core==1.45.0",
+        "aws-cdk.core==1.51.0",
+        "aws-cdk.aws-apigateway==1.51.0",
+        "aws-cdk.aws-athena==1.51.0",
+        "aws-cdk.aws-cloudfront==1.51.0",
+        "aws-cdk.aws-dynamodb==1.51.0",
+        "aws-cdk.aws-glue==1.51.0",
+        "aws-cdk.aws-iam==1.51.0",
+        "aws-cdk.aws-kinesisfirehose==1.51.0",
+        "aws-cdk.aws-lambda==1.51.0",
+        "aws-cdk.aws-lambda-destinations==1.51.0",
+        "aws-cdk.aws-lambda-event-sources==1.51.0",
+        "aws-cdk.aws-logs==1.50",
+        "aws-cdk.aws-s3==1.51.0",
+        "aws-cdk.aws-s3-deployment==1.51.0",
+        "aws-cdk.aws-sqs==1.51.0",
+        "boto3==1.14.11",
+        "pytest==5.4.3",
     ],
 
-    python_requires=">=3.6",
+    python_requires=">=3.8",
 
     classifiers=[
         "Development Status :: 4 - Beta",
@@ -33,8 +50,6 @@ setuptools.setup(
 
         "Programming Language :: JavaScript",
         "Programming Language :: Python :: 3 :: Only",
-        "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
 
         "Topic :: Software Development :: Code Generators",
