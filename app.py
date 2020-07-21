@@ -21,7 +21,7 @@ except KeyError as error:
 
 app = core.App()
 
-env = env = core.Environment(
+env = core.Environment(
     account=AWS_ACCOUNT_ID,
     region='us-east-1',
 )
